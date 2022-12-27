@@ -30,13 +30,13 @@ export class TransactionsService {
     );
   }
 
-  async getUserBalance(): Promise<any> {
+  async getUserBalance(userId: string): Promise<{ amount: number } | string> {
     return new Promise((resolve, reject) => {
       this.transaction.aggregate(
         [
           {
             $match: {
-              userId: '123',
+              userId,
             },
           },
           {

@@ -19,7 +19,6 @@ export class TransactionsController {
 
   @Get('/balance')
   async getUserBalance(@Response() res) {
-    console.log('locals->', res.locals);
-    res.json(await this.transactionService.getUserBalance());
+    res.json(await this.transactionService.getUserBalance(res.locals.id));
   }
 }
