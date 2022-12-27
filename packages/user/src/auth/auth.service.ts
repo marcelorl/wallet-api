@@ -28,7 +28,11 @@ export class AuthService {
 
     return {
       user: new this.user(userData).publicFields,
-      access_token: this.jwtService.sign(crendentials),
+      access_token: await this.jwtService.signAsync(crendentials),
     };
+  }
+
+  async authorization(token: string) {
+    return this.jwtService.decode(token);
   }
 }
