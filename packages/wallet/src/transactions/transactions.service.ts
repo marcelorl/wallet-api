@@ -30,29 +30,34 @@ export class TransactionsService {
     );
   }
 
-  async getUserBalance(): Promise<void> {
-    return this.transaction
-      .aggregate([
-        {
-          $match: {
-            userId: 123,
+  async getUserBalance(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.transaction.aggregate(
+        [
+          {
+            $match: {
+              userId: '123',
+            },
           },
-        },
-        {
-          $group: {
-            _id: '$userId',
-            totalPoints: {
-              $sum: {
-                $cond: [
-                  { $eq: ['type', 'DEBIT'] },
-                  '$amount',
-                  { $multiply: ['$amount', -1] },
-                ],
+          {
+            $group: {
+              _id: '$userId',
+              balance: {
+                $sum: '$amount',
               },
             },
           },
+        ],
+        (err, res) => {
+          if (err || !res.length) {
+            reject(err);
+          } else if (!res.length) {
+            resolve('No results');
+          } else {
+            resolve({ amount: res[0].balance });
+          }
         },
-      ])
-      .exec(console.log);
+      );
+    });
   }
 }

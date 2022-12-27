@@ -3,16 +3,24 @@ import { Document } from 'mongoose';
 
 export type TransactionDocument = Transaction & Document;
 
+function transformAmount(amount: number) {
+  if (this.type === 'DEBIT') {
+    return amount * -1;
+  }
+
+  return amount;
+}
+
 @Schema({ id: true, virtuals: true, versionKey: false })
 export class Transaction {
   @Prop(String)
   userId: string;
 
-  @Prop(Number)
-  amount: number;
-
   @Prop({ type: String, enum: ['CREDIT', 'DEBIT'] })
   type: string;
+
+  @Prop({ type: Number, set: transformAmount })
+  amount: number;
 
   publicFields?: any;
 }

@@ -18,8 +18,8 @@ export class TransactionsController {
   }
 
   @Get('/balance')
-  getUserBalance(@Response() res) {
+  async getUserBalance(@Response() res) {
     console.log('locals->', res.locals);
-    return this.transactionService.getUserBalance();
+    res.json(await this.transactionService.getUserBalance());
   }
 }
