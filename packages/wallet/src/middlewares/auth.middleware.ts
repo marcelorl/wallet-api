@@ -1,4 +1,9 @@
-import { Injectable, Logger, NestMiddleware } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  NestMiddleware,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { Request, Response, NextFunction } from 'express';
 import { AxiosError } from 'axios';
@@ -35,6 +40,10 @@ export class AuthMiddleware implements NestMiddleware {
           }),
         ),
     );
+
+    if (!response.data) {
+      throw new UnauthorizedException();
+    }
 
     res.locals = response.data;
     next();
