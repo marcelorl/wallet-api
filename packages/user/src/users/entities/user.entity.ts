@@ -28,13 +28,9 @@ export class User {
 
 export const UserSchema = SchemaFactory.createForClass(User);
 
-UserSchema.virtual('id').get(function () {
-  return this._id;
-});
-
 UserSchema.virtual('publicFields').get(function () {
   return {
-    id: this.id,
+    id: this._id,
     firstName: this.firstName,
     lastName: this.lastName,
     email: this.email,

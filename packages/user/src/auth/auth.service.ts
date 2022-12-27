@@ -26,9 +26,15 @@ export class AuthService {
       crendentials.email,
     );
 
+    const userPublicFields = new this.user(userData).publicFields;
+
     return {
-      user: new this.user(userData).publicFields,
-      access_token: this.jwtService.sign(crendentials),
+      user: userPublicFields,
+      access_token: await this.jwtService.signAsync(userPublicFields),
     };
+  }
+
+  async authorization(token: string) {
+    return this.jwtService.decode(token);
   }
 }

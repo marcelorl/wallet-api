@@ -5,12 +5,13 @@
   "main": "index.js",
   "packageManager": "pnpm@^7.18.1",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev": "pnpm --stream -r run start:dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "user": "workspace:0.0.1"
+    "user": "workspace:0.0.1",
+    "wallet": "workspace:0.0.1"
   }
 }
