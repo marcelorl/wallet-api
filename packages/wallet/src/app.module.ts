@@ -1,18 +1,24 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { HttpModule } from '@nestjs/axios';
+import {ConfigModule, ConfigService} from '@nestjs/config';
 
 import { TransactionsModule } from './transactions/transactions.module';
 import { AuthMiddleware } from './middlewares/auth.middleware';
+import configuration from "user/dist/config/configuration";
 
 @Module({
   imports: [
     HttpModule,
     TransactionsModule,
-    MongooseModule.forRoot(
-      //'mongodb://root:pass12345@localhost:27017/user?serverSelectionTimeoutMS=2000&authSource=admin',
-      'mongodb://localhost:27017/wallet?serverSelectionTimeoutMS=2000&authSource=admin',
-    ),
+    ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        uri: configService.get('mongoUri')
+      }),
+      inject: [ConfigService]
+    }),
   ],
 })
 export class AppModule implements NestModule {

@@ -5,7 +5,9 @@
   "main": "index.js",
   "packageManager": "pnpm@^7.18.1",
   "scripts": {
-    "start:dev": "pnpm --stream -r run start:dev"
+    "build": "pnpm -r run build",
+    "start:dev": "pnpm --stream -r run start:dev",
+    "start:prod": "pnpm --stream -r run start:prod"
   },
   "keywords": [],
   "author": "",

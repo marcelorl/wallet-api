@@ -50,9 +50,7 @@ export class TransactionsService {
         ],
         (err, res) => {
           if (err || !res.length) {
-            reject(err);
-          } else if (!res.length) {
-            resolve('No results');
+            resolve({ amount: 0 });
           } else {
             resolve({ amount: res[0].balance });
           }

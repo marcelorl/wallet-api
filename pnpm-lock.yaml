@@ -106,6 +106,7 @@ importers:
       '@nestjs/axios': ^1.0.1
       '@nestjs/cli': ^9.0.0
       '@nestjs/common': ^9.0.0
+      '@nestjs/config': ^2.2.0
       '@nestjs/core': ^9.0.0
       '@nestjs/mongoose': ^9.2.1
       '@nestjs/platform-express': ^9.0.0
@@ -138,6 +139,7 @@ importers:
     dependencies:
       '@nestjs/axios': 1.0.1_b4pxbpa7chblgbyake5iz5rdmu
       '@nestjs/common': 9.2.1_ca43gjgfb2qovizjnmxfs634zy
+      '@nestjs/config': 2.2.0_b4pxbpa7chblgbyake5iz5rdmu
       '@nestjs/core': 9.2.1_e6la6qvsclaae2becwjnmfvsuq
       '@nestjs/mongoose': 9.2.1_qiedue3ydlfd22rvzefvlpt7zm
       '@nestjs/platform-express': 9.2.1_hjcqpoaebdr7gdo5hgc22hthbe
@@ -1879,7 +1881,7 @@ packages:
       reflect-metadata: ^0.1.13
       rxjs: ^6.0.0 || ^7.2.0
     dependencies:
-      '@nestjs/common': 9.2.1_welcnyot5bzd5wa2aovbkxpi4i
+      '@nestjs/common': 9.2.1_ca43gjgfb2qovizjnmxfs634zy
       dotenv: 16.0.1
       dotenv-expand: 8.0.3
       lodash: 4.17.21
