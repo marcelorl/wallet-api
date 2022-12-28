@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: ilia-mongodb
+    networks:
+      - server-network
+    volumes:
+      - ./mongo-volume:/data/db
+    ports:
+      - 27017:27017
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/test --quiet
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  microservices:
+    build:
+      context: .
+      dockerfile: ./build/Dockerfile
+    ports:
+      - 3002:3002
+      - 3001:3001
+    networks:
+      - server-network
+networks:
+  server-network:

@@ -1,0 +1,19 @@
+{
+  "name": "wallet-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "packageManager": "pnpm@^7.18.1",
+  "scripts": {
+    "build": "pnpm -r run build",
+    "start:dev": "pnpm --stream -r run start:dev",
+    "start:prod": "pnpm --stream -r run start:prod"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "user": "workspace:0.0.1",
+    "wallet": "workspace:0.0.1"
+  }
+}
